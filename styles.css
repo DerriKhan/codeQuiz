@@ -1,0 +1,21 @@
+.body {
+    position: relative;
+}
+
+#timer {
+    float: right;
+    background-color: darkblue;
+    border: 2px solid black;
+    color: whitesmoke;
+    box-shadow: 5px 5px 5px black;
+}
+
+.Question {
+    position: absolute;
+    padding: 25px;
+    top: 25%;
+    left: auto;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid black;
+}
