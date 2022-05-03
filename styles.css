@@ -2,20 +2,29 @@
     position: relative;
 }
 
+.questionBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid darkblue;
+}
+
+#question {
+ color: red;
+}
+
+#answer {
+    color: black;
+}
+
 #timer {
     float: right;
     background-color: darkblue;
     border: 2px solid black;
     color: whitesmoke;
     box-shadow: 5px 5px 5px black;
-}
-
-.Question {
-    position: absolute;
-    padding: 25px;
-    top: 25%;
-    left: auto;
-    justify-content: center;
-    align-items: center;
-    border: 10px solid black;
 }
