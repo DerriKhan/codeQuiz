@@ -14,7 +14,9 @@
 }
 
 #question {
- color: red;
+ color: darkred;
+ font-family: Verdana, Tahoma, sans-serif;
+ font-size: larger;
 }
 
 #answer {
@@ -27,4 +29,9 @@
     border: 2px solid black;
     color: whitesmoke;
     box-shadow: 5px 5px 5px black;
+}
+
+.button {
+    background-color: black;
+    color: yellow
 }

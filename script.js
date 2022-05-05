@@ -1,9 +1,11 @@
+var boxBox = document.getElementById('boxBox');
 var question = document.getElementById('question');
 var answer = document.getElementById('answer');
 var timer = document.getElementById('timer');
 var response = document.querySelector('button');
+var displayResponse = document.getElementById('response');
 var startingIndex = 0;
-var timeLeft = 60;
+var timeLeft = 59;
 var moreQuestion
 var questionsAndAnswers = [
     {   question: 'What is the primary purpose of JavaScript?',
@@ -57,17 +59,16 @@ timer.addEventListener('click', countDown);
 function countDown() {
     askQuestion()
     timeLeft
-    setInterval(function() {
+    scoreClock = setInterval(function() {
         if(timeLeft > 0) {
             timer.textContent = timeLeft;
             timeLeft--;
         } else {
             timer.textContent = "Time is up!";
+            boxBox.textContent = "You ran out of time";
         }
     }, 1000);
 };
-
-askQuestion();
 
 function askQuestion() {
     question.append(questionsAndAnswers[startingIndex].question);
@@ -78,15 +79,22 @@ function askQuestion() {
         button.addEventListener('click', (function() {
             var choice = button.textContent;
             if (choice === questionsAndAnswers[startingIndex].correctAnswer) {
-                console.log("correct");
+                // displayResponse.textContent = "Correct";
+                // fade();
             } else {
                 timeLeft = timeLeft - 10;
-                 console.log("incorrect")
-            }
+                //  displayResponse.textContent = "Incorrect";
+                //  fade();
+            };
+            
             nextQuestion();
         }));
     });
 };
+
+// fade(function() {
+//     displayResponse.textContent = "";
+// }, 1000);
 
 function nextQuestion() {
     startingIndex++
@@ -95,12 +103,20 @@ function nextQuestion() {
         answer.textContent = "";
         askQuestion();
     } else {
-        score();
+        end();
     }
 }
 
-function score(timeLeft) {
-    clearInterval(timeLeft);
-    console.log(timeLeft);
-    
+function end() {
+    clearInterval(scoreClock);
+    console.log(timer.textContent);
+    question.textContent = "";
+    answer.textContent = "";
+    recordScore();
+}
+function recordScore() {
+    question.textContent = "Complete! You scored a " + timer.textContent + "!";
+    answer.textContent = 'Enter your initials to record your score!';
+    // var name = document.getElementsByTagName('input').value;
+    // console.log(name)
 }
