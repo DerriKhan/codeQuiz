@@ -9,3 +9,5 @@ The user is allowed one response per question.
 An incorrect response will deduct 10 seconds from the time remaining.
 
 Once all questions have recieved a response, the remaining time is the users score.
+
+The user will be able to input their initials to record their scores.

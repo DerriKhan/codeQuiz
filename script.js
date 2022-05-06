@@ -3,7 +3,15 @@ var question = document.getElementById('question');
 var answer = document.getElementById('answer');
 var timer = document.getElementById('timer');
 var response = document.querySelector('button');
-var displayResponse = document.getElementById('response');
+var scoreForm = document.getElementById('scoreForm');
+var submitButton = document.getElementById('submit');
+var initials = document.createElement('input');
+initials.type= "text";
+var submit = document.createElement('button');
+submit.type = 'submit';
+submit.textContent = 'Submit';
+// var initialsScore = document.createElement("button");
+
 var startingIndex = 0;
 var timeLeft = 59;
 var moreQuestion
@@ -55,8 +63,14 @@ correctAnswer: 'Inside the <head> tag'
 },
 ]
 
+question.textContent = "Click Start Quiz To Begin";
+answer.textContent= "Answer Carefully, Incorrect Responses Deduct 10 points!"
+
 timer.addEventListener('click', countDown);
 function countDown() {
+    question.textContent = "";
+    answer.textContent = "";
+    initials.innerHTML = "";
     askQuestion()
     timeLeft
     scoreClock = setInterval(function() {
@@ -79,22 +93,13 @@ function askQuestion() {
         button.addEventListener('click', (function() {
             var choice = button.textContent;
             if (choice === questionsAndAnswers[startingIndex].correctAnswer) {
-                // displayResponse.textContent = "Correct";
-                // fade();
             } else {
                 timeLeft = timeLeft - 10;
-                //  displayResponse.textContent = "Incorrect";
-                //  fade();
             };
-            
             nextQuestion();
         }));
     });
 };
-
-// fade(function() {
-//     displayResponse.textContent = "";
-// }, 1000);
 
 function nextQuestion() {
     startingIndex++
@@ -109,14 +114,32 @@ function nextQuestion() {
 
 function end() {
     clearInterval(scoreClock);
-    console.log(timer.textContent);
     question.textContent = "";
     answer.textContent = "";
     recordScore();
 }
 function recordScore() {
+    document.createElement
     question.textContent = "Complete! You scored a " + timer.textContent + "!";
     answer.textContent = 'Enter your initials to record your score!';
-    // var name = document.getElementsByTagName('input').value;
-    // console.log(name)
+    scoreForm.appendChild(initials);
+    submitButton.appendChild(submit);
+}
+
+window.localStorage.clear();
+submit.addEventListener('click', captureScore)
+
+function captureScore() {
+    localStorage.setItem('player', document.querySelector("input").value);
+    localStorage.setItem('score', timer.textContent);
+    question.textContent = "";
+    answer.textContent = "";
+    scoreForm.innerHTML = "";
+    submitButton.innerHTML = "";
+    displayScores();
+}
+
+function displayScores () {
+    question.textContent = "High Scores:"
+    answer.append(localStorage.getItem('player '), localStorage.getItem(' score'));
 }
